@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creators50 - Exclusive Invitation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #101321 0%, #0b0e1b 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      background: #fff;
+      color: #222;
+      border-radius: 18px;
+      max-width: 760px;
+      width: 100%;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      border: 2px solid #d4af37;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      text-align: center;
+      padding: 60px 20px;
+      color: #d4af37;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "✦ ✦ ✦";
+      display: block;
+      font-size: 1.3em;
+      opacity: 0.5;
+      letter-spacing: 10px;
+      margin-bottom: 15px;
+    }
+
+    .header h1 {
+      font-size: 2.6em;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #e8d5b7;
+      font-size: 1em;
+      letter-spacing: 2px;
+    }
+
+    .content {
+      padding: 45px 40px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .intro span {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    .call-to-action {
+      text-align: center;
+      background: #faf8f3;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+      border-left: 4px solid #d4af37;
+    }
+
+    .call-to-action h2 {
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      font-size: 1.3em;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      background: #fffdf8;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1a1a2e;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #d4af37;
+      border: 2px solid #d4af37;
+      border-radius: 6px;
+      font-size: 1.05em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .submit-btn:hover {
+      background: #d4af37;
+      color: #1a1a2e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      background: #d4af37;
+      color: #1a1a2e;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      color: #555;
+      padding-bottom: 20px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 30px 20px;
+      }
+
+      .header h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Creators50</h1>
+      <p>A Personal Invitation</p>
+    </div>
+
+    <div class="content">
+      <div class="intro">
+        <p>
+          You have been <span>personally selected</span> to join the
+          <span>Facilitators Core Team</span> of the
+          <strong>Creators50 Initiative</strong>.
+        </p>
+        <p style="margin-top: 10px; color: #444;">
+          Confirm your participation below and be part of something truly transformational.
+        </p>
+      </div>
+
+      <div class="call-to-action">
+        <h2>Accept Your Invitation</h2>
+        <p>Enter your details and confirm via WhatsApp</p>
+      </div>
+
+      <form id="invitationForm" onsubmit="handleSubmit(event)">
+        <div class="success-message" id="successMessage">
+          ✓ Thank you! Redirecting to WhatsApp...
+        </div>
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your full name" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com" />
+        </div>
+
+        <button type="submit" class="submit-btn">Accept Invitation</button>
+      </form>
+
+      <div class="footer">✦ © 2025 Creators50 Initiative ✦</div>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!name || !email) return;
+
+      document.getElementById("successMessage").style.display = "block";
+
+      const message = `Hi Solomon, I am ${name}. I received the invitation to join the Creators50 Core Team and I'm confirming my participation. My email is ${email}. Excited to begin this transformational journey!`;
+
+      const encoded = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/2347076560169?text=${encoded}`;
+
+      setTimeout(() => {
+        window.open(whatsappURL, "_blank");
+      }, 1000);
+    }
+  </script>
+</body>
+  </html>
