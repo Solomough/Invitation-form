@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creators50 - Exclusive Invitation</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // 🔹 Replace this with your EmailJS public key
+    })();
+  </script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -35,14 +37,8 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .header {
@@ -50,17 +46,6 @@
       text-align: center;
       padding: 60px 20px;
       color: #d4af37;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header::before {
-      content: "✦ ✦ ✦";
-      display: block;
-      font-size: 1.3em;
-      opacity: 0.5;
-      letter-spacing: 10px;
-      margin-bottom: 15px;
     }
 
     .header h1 {
@@ -77,9 +62,7 @@
       letter-spacing: 2px;
     }
 
-    .content {
-      padding: 45px 40px;
-    }
+    .content { padding: 45px 40px; }
 
     .intro {
       text-align: center;
@@ -87,10 +70,7 @@
       line-height: 1.7;
     }
 
-    .intro span {
-      color: #d4af37;
-      font-weight: 600;
-    }
+    .intro span { color: #d4af37; font-weight: 600; }
 
     .call-to-action {
       text-align: center;
@@ -108,9 +88,7 @@
       letter-spacing: 1px;
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+    .form-group { margin-bottom: 20px; }
 
     label {
       display: block;
@@ -126,7 +104,6 @@
       border: 2px solid #d4af37;
       border-radius: 8px;
       font-size: 1em;
-      font-family: inherit;
       background: #fffdf8;
       transition: all 0.3s ease;
     }
@@ -148,7 +125,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
@@ -178,13 +154,8 @@
     }
 
     @media (max-width: 600px) {
-      .content {
-        padding: 30px 20px;
-      }
-
-      .header h1 {
-        font-size: 2em;
-      }
+      .content { padding: 30px 20px; }
+      .header h1 { font-size: 2em; }
     }
   </style>
 </head>
@@ -197,25 +168,17 @@
 
     <div class="content">
       <div class="intro">
-        <p>
-          You have been <span>personally selected</span> to join the
-          <span>Facilitators Core Team</span> of the
-          <strong>Creators50 Initiative</strong>.
-        </p>
-        <p style="margin-top: 10px; color: #444;">
-          Confirm your participation below and be part of something truly transformational.
-        </p>
+        <p>You have been <span>personally selected</span> to join the <span>Facilitators Core Team</span> of <strong>Creators50 Initiative</strong>.</p>
+        <p style="margin-top: 10px; color: #444;">Confirm your participation to receive your full invitation via email.</p>
       </div>
 
       <div class="call-to-action">
         <h2>Accept Your Invitation</h2>
-        <p>Enter your details and confirm via WhatsApp</p>
+        <p>Enter your details to receive an official invitation mail.</p>
       </div>
 
-      <form id="invitationForm" onsubmit="handleSubmit(event)">
-        <div class="success-message" id="successMessage">
-          ✓ Thank you! Redirecting to WhatsApp...
-        </div>
+      <form id="invitationForm" onsubmit="sendEmail(event)">
+        <div class="success-message" id="successMessage">✓ Invitation sent successfully! Check your email.</div>
 
         <div class="form-group">
           <label for="name">Full Name</label>
@@ -227,7 +190,7 @@
           <input type="email" id="email" name="email" required placeholder="your@email.com" />
         </div>
 
-        <button type="submit" class="submit-btn">Accept Invitation</button>
+        <button type="submit" class="submit-btn">Receive Invitation</button>
       </form>
 
       <div class="footer">✦ © 2025 Creators50 Initiative ✦</div>
@@ -235,25 +198,59 @@
   </div>
 
   <script>
-    function handleSubmit(event) {
+    function sendEmail(event) {
       event.preventDefault();
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
+      const success = document.getElementById("successMessage");
 
-      if (!name || !email) return;
+      const messageBody = `
+Dear ${name},
 
-      document.getElementById("successMessage").style.display = "block";
+I’m reaching out to personally invite you to be part of the Facilitators Core Team for an initiative I’m coordinating titled Creators50 — a 50-day transformational track designed to raise a group of visionary young minds who are intentional about building their future now.
 
-      const message = `Hi Solomon, I am ${name}. I received the invitation to join the Creators50 Core Team and I'm confirming my participation. My email is ${email}. Excited to begin this transformational journey!`;
+The program will focus on five key pillars:
 
-      const encoded = encodeURIComponent(message);
-      const whatsappURL = `https://wa.me/2347076560169?text=${encoded}`;
+1. Word & Teaching — spiritual grounding and direction.
+2. Media & Creativity — shaping strong personal and digital presence.
+3. Innovation & Tech — creating and developing relevant solutions.
+4. Leadership & Coordination — building capacity to lead with influence.
+5. Communication & Partnership — strengthening our ability to collaborate and impact communities.
 
-      setTimeout(() => {
-        window.open(whatsappURL, "_blank");
-      }, 1000);
+As a facilitator, your role will involve:
+• Guiding discussions within your assigned focus area.
+• Supporting participants in their creative and leadership development.
+• Contributing ideas that strengthen the overall structure and impact of the 50-day experience.
+
+This is a collaborative assignment — not merely a role. It’s a shared opportunity to build something that will inspire transformation among young minds, beginning with those around us and expanding beyond.
+
+Our first internal meeting (virtual) will take place before the official launch, where we’ll walk through the structure, content schedule, and coordination plan.
+
+If you’re open to this collaboration, kindly confirm your availability so I can share the onboarding details and your designated focus area.
+
+Looking forward to building with you.
+
+Warm regards,
+Solomon Moughkaa Zahemen
+Coordinator, Creators50
+Founder, The Ark Network
+      `;
+
+      const templateParams = {
+        to_name: name,
+        to_email: email,
+        message: messageBody,
+      };
+
+      emailjs.send("service_7dx71uv", "template_wzu4n4k", templateParams)
+        .then(() => {
+          success.style.display = "block";
+        })
+        .catch((error) => {
+          alert("Error sending email: " + error.text);
+        });
     }
   </script>
 </body>
-  </html>
+</html>
